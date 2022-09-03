@@ -1,3 +1,7 @@
 # Games folder
 Games/venv
 Games/.env
+
+# Task_Board folder
+Task_Board/venv
+Task_Board/.env
