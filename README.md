@@ -1,7 +1,5 @@
-# Rin-s-Game-Bot-Discord-
+# Discord Bots
+Bots made for Discord.
 
-Made by Rin
-
-Current games:
-- Russian Roulette
-- Sudoku
+### Folder guide
+Games - Contains games that can be played in Discord.
