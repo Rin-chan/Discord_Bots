@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 import os
-from secrets import choice
 from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, DateTime, MetaData
 from sqlalchemy import func, select
@@ -42,11 +41,10 @@ meta.create_all(engine)
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
-    
+        
     if not checkForPings.is_running():
         checkForPings.start()
 
-# Still not working
 @tasks.loop(minutes=1)
 async def checkForPings():
     channel = bot.get_channel(channel_id) # Send to General in my server
@@ -56,12 +54,13 @@ async def checkForPings():
     conn = engine.connect()
     all_reminders_result = conn.execute(all_reminders)
     
-    guild = channel.guild
+    guild = channel.members
+        
     for reminder in all_reminders_result:
-        if guild.get_user(reminder[1]) is not None:
-            await channel.send("Reminder: {} @{}".format(reminder[2], reminder[1]))
-        else:
-            await channel.send("No user")
+        for selUser in guild:
+            if str(reminder[1]) == str(selUser.id):
+                await channel.send(f"Reminder: {reminder[2]} <@{reminder[1]}>")
+                break
     
 @bot.command(name="rem", help="View your current reminders")
 async def view_reminders(ctx):
@@ -119,7 +118,7 @@ async def add_reminders(ctx):
     await ctx.send("Description?")
     description_rem = await bot.wait_for("message", check=check)
     
-    await ctx.send("Dateline? (dd/mm/yy HH:MM:SS)")
+    await ctx.send("Dateline? (mm/dd/yy HH:MM:SS)")
     dateline_rem = await getDateTimeRem()
         
     reminder_message = await ctx.send("New Reminder by {}\n".format(ctx.author.name) +
@@ -223,7 +222,7 @@ async def edit_reminders(ctx, ID):
                     await ctx.send("Successfully updated description")
                     break
             elif choice_rem.content == "3":
-                await ctx.send("Enter new end date (dd/mm/yy HH:MM:SS)")
+                await ctx.send("Enter new end date (mm/dd/yy HH:MM:SS)")
                 new_dateline = await getDateTimeRem()
                 
                 conn = engine.connect()
