@@ -14,5 +14,3 @@ class Enemy:
     
     def set_damage(self, damage):
         self.damage = damage
-
-Enemy_Bat = Enemy("Bat", 1)
