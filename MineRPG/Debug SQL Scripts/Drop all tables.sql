@@ -1,2 +1,2 @@
 DROP TABLE `minerpg`.`users`;
-DROP TABLE `minerpg`.`items`;
+DROP TABLE `minerpg`.`enemies`;
