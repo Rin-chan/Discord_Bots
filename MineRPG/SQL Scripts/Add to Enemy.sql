@@ -1,0 +1,2 @@
+INSERT INTO minerpg.enemy (name, hp, damage, min_level, max_level, exp, gold) VALUES ("Chicken", 4, 0, 0, 5, 1, 1);
+INSERT INTO minerpg.enemy (name, hp, damage, min_level, max_level, exp, gold) VALUES ("Bat", 5, 1, 0, 5, 2, 3);

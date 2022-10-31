@@ -1,0 +1,1 @@
+INSERT INTO minerpg.weapon (id, name, damage, cost) VALUES (1, "Fist", 1, 0);
