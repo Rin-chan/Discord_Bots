@@ -1,8 +1,8 @@
 from .enemy import Enemy
 
 class Enemy_Bat(Enemy):
-    def __init__(self, name, damage, type):
-        super().__init__(name, damage)
+    def __init__(self, name, hp, damage, exp, gold, type):
+        super().__init__(name, hp, damage, exp, gold)
         self.type = type
 
     def get_type(self):
@@ -11,4 +11,4 @@ class Enemy_Bat(Enemy):
     def set_type(self, type):
         self.type = type
 
-Water_Bat = Enemy_Bat("Water Bat", 10, "Water")
+Water_Bat = Enemy_Bat("Water Bat", 5, 1, 1, 1, "Water")

@@ -7,7 +7,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 # Other files
-import mySQL
+from database import database
 from exploring import main as exploring
 
 
