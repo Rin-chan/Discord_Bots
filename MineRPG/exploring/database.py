@@ -1,6 +1,8 @@
 from database.database import engine, session
 from database.User import User
 from database.Enemy import Enemy
+from database.Enemy_Fight import Enemy_Fight
+from database.Weapon import Weapon
 
 def check_User_in_DB(userId):
     result = User.query.filter_by(id=userId).scalar()
@@ -22,8 +24,12 @@ def update_User(user):
     session.add(user)
     session.commit()
 
-def add_Enemy(userId, name, hp, damage):
-    ins1 = Enemy(name=name, hp=hp, damage=damage)
+def get_all_enemies(level):
+    result = Enemy.query.filter(Enemy.min_level<=level, Enemy.max_level>=level)
+    return result
+
+def add_Enemy(userId, monster):
+    ins1 = Enemy_Fight(name=monster.name, hp=monster.hp, original_hp=monster.hp, damage=monster.damage, exp=monster.exp, gold=monster.gold)
     session.add(ins1)
     session.flush()
 
@@ -33,10 +39,9 @@ def add_Enemy(userId, name, hp, damage):
     session.commit()
 
 def get_Enemy(enemyId):
-    result = Enemy.query.filter_by(id=enemyId).first()
+    result = Enemy_Fight.query.filter_by(id=enemyId).first()
     return result
 
-# INCOMPLETE
 def update_Enemy(enemy):
     session.add(enemy)
     session.commit()
