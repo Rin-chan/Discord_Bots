@@ -8,7 +8,8 @@ from dotenv import load_dotenv
 
 # Other files
 from database import database
-from exploring import main as exploring
+from adventure import main as adventure
+from user import main as user
 
 
 
@@ -26,9 +27,13 @@ bot = commands.Bot(command_prefix='M', intents=intents)
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
+@bot.command(name="user", help="User Information")
+async def get_user_information(ctx):
+    await user.get_details(ctx)
+
 @bot.command(name="adv", help="Go on an adventure")
 async def go_adventure(ctx):
-    await exploring.go_adventure(ctx)
+    await adventure.go_adventure(ctx)
 
 
 
