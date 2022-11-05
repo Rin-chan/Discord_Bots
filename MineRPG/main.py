@@ -31,6 +31,10 @@ async def on_ready():
 async def get_user_information(ctx):
     await user.get_details(ctx)
 
+@bot.command(name="inv", help="User Inventory")
+async def get_user_inventory(ctx):
+    await user.get_inventory(ctx)
+
 @bot.command(name="adv", help="Go on an adventure")
 async def go_adventure(ctx):
     await adventure.go_adventure(ctx)

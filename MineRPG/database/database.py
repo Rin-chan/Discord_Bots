@@ -5,6 +5,7 @@ from .Enemy import Enemy
 from .User import User
 from .Enemy_Fight import Enemy_Fight
 from .Weapon import Weapon
+from .Inventory import Inventory
 from . import Base
 
 # Start up database
@@ -16,5 +17,5 @@ session = scoped_session(sessionmaker())
 session.configure(bind=engine, autoflush=False, expire_on_commit=False)
 
 Base.query = session.query_property()
-#Base.metadata.drop_all(engine)
+Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)

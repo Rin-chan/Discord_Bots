@@ -23,3 +23,19 @@ async def get_details(ctx):
 
     message += "```"
     await ctx.send(message)
+
+async def get_inventory(ctx):
+    if not check_User_in_DB(ctx.author.id):
+        add_User(ctx.author.id)
+    
+    user_result = get_User(ctx.author.id)
+
+    inventory = user_result.inventory
+
+    message = f"```\n{ctx.author.name}'s Inventory\n\n"
+
+    for i in  inventory:
+        message += f"{i}\n"
+
+    message += "```"
+    await ctx.send(message)
