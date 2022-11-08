@@ -17,5 +17,5 @@ session = scoped_session(sessionmaker())
 session.configure(bind=engine, autoflush=False, expire_on_commit=False)
 
 Base.query = session.query_property()
-Base.metadata.drop_all(engine)
+#Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)

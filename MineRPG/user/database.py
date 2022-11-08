@@ -1,5 +1,6 @@
 from database.database import engine, session
 from database.User import User
+from database.Weapon import Weapon
 
 def check_User_in_DB(userId):
     result = User.query.filter_by(id=userId).scalar()
@@ -15,4 +16,5 @@ def add_User(userId):
 
 def get_User(userId):
     result = User.query.filter_by(id=userId).first()
+    result.weapon = Weapon.query.filter_by(id=result.weapon).first()
     return result

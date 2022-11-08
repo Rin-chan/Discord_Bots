@@ -16,7 +16,7 @@ async def get_details(ctx):
     message += f"Level: {user_result.level}\n"
     message += f"Exp: {user_result.exp}\n"
     message += f"Gold: {user_result.gold}\n"
-    message += f"Weapon: {user_result.weapon}\n"
+    message += f"Weapon: {user_result.weapon.name}\n"
     message += f"Digging: {user_result.digging}\n"
     message += f"Mining: {user_result.mining}\n"
     message += f"Farming: {user_result.farming}\n"
