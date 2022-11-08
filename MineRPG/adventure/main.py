@@ -2,6 +2,16 @@ from random import randint
 
 from .database import check_User_in_DB, get_all_enemies, add_User, get_User, update_User, add_Enemy, get_Enemy, update_Enemy, delete_Enemy
 
+def level_up(exp):
+    level = 1
+
+    if (exp > 10):
+        level = 2
+    elif (exp > 25):
+        level = 3
+
+    return level
+
 def monsters_available(level):
     monsters = []
 
@@ -56,6 +66,11 @@ async def go_adventure(ctx):
 
         user_result.exp += enemy_result.exp
         user_result.gold += enemy_result.gold
+
+        new_level = level_up(user_result.exp)
+        if (new_level > user_result.level):
+            user_result.level = new_level
+            user_result.hp = calculate_max_hp(user_result.level)
 
         update_User(user_result)
 
